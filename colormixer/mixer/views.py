@@ -24,7 +24,7 @@ def is_valid_hex(color):
             return False
     return False
 
-# thank you ChatGPT for helping me get a quick way to mix color codes, haha!
+# thank you ChatGPT for helping me get a quick way to mix color codes!
 
 def mix_colors(color1, color2):
     rgb1 = hex_to_rgb(color1)
