@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- I used AI to help with formatting and logic for the HTML. I'm not great with HTML yet...-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Mixer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 50px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4F4F4F;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .mixed-color-box {
+            margin-top: 20px;
+            height: 100px;
+            width: 100px;
+            border: 1px solid #ddd;
+            display: inline-block;
+        }
+
+        footer {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Color Mixer</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="color1">Color 1 (Hex): </label>
+            <input type="text" id="color1" name="color1" value="{{ request.POST.color1 }}" placeholder="#FF5733">
+        </div>
+        <div>
+            <label for="color2">Color 2 (Hex): </label>
+            <input type="text" id="color2" name="color2" value="{{ request.POST.color2 }}" placeholder="#33FF57">
+        </div>
+        <button type="submit">Mix Colors</button>
+    </form>
+
+    {% if mixed_color %}
+    <div>
+        <h2>Mixed Color: </h2>
+        {% if mixed_color == "Invalid hex codes. Please use a valid color code (e.g., #FF5733)." %}
+        <p>{{ mixed_color }}</p>
+        {% else %}
+        <div class="mixed-color-box" style="background-color: {{ mixed_color }};"></div>
+        <p>{{ mixed_color }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <footer>
+        <p>Enter hex color codes (e.g., #FF5733, #33FF57) to mix them!</p>
+    </footer>
+</body>
+
+</html>
