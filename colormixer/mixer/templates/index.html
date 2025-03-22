@@ -52,7 +52,7 @@
     <h1>Color Mixer</h1>
 
     <form method="POST">
-        {% csrf_token %}
+        {% csrf_token %} <!-- apparently I need this??-->
         <div>
             <label for="color1">Color 1 (Hex): </label>
             <input type="text" id="color1" name="color1" value="{{ request.POST.color1 }}" placeholder="#FF5733">
@@ -65,6 +65,7 @@
     </form>
 
     {% if mixed_color %}
+    <!-- this usage of logic is new to me, i didn't know that was an option in HTML before this program!-->
     <div>
         <h2>Mixed Color: </h2>
         {% if mixed_color == "Invalid hex codes. Please use a valid color code (e.g., #FF5733)." %}
